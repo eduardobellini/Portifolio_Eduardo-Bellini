@@ -1,37 +1,36 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import SiteChrome from "@/components/SiteChrome";
 import "./globals.css";
-import ScrollThemeProvider from "@/components/ScrollThemeProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
 
 export const metadata: Metadata = {
-  title: "Eduardo Bellini - Portfolio",
-  description: "Portfólio de Eduardo Bellini - Desenvolvedor Júnior",
+  metadataBase: new URL(siteUrl),
+  title: "Eduardo Bellini | Desenvolvedor Full Stack",
+  description: "Portfólio de Eduardo Bellini — desenvolvimento frontend, backend e cloud com React, Next.js, Node.js e AWS.",
+  keywords: ["Eduardo Bellini", "desenvolvedor full stack", "React", "Next.js", "Node.js", "AWS"],
+  authors: [{ name: "Eduardo Bellini" }],
+  openGraph: {
+    title: "Eduardo Bellini | Desenvolvedor Full Stack",
+    description: "Da interface à API: produtos web funcionais, responsivos e bem construídos.",
+    type: "website",
+    locale: "pt_BR",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Eduardo Bellini — Desenvolvedor Full Stack" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eduardo Bellini | Desenvolvedor Full Stack",
+    description: "Da interface à API: produtos web funcionais, responsivos e bem construídos.",
+    images: ["/og.png"],
+  },
+  icons: { icon: "/favicon.svg" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="pt-BR">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ScrollThemeProvider>
-          {children}
-        </ScrollThemeProvider>
-      </body>
-    </html>
-  );
+export const viewport: Viewport = { themeColor: "#0a0d0b", colorScheme: "dark" };
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="pt-BR"><body><SiteChrome>{children}</SiteChrome></body></html>;
 }

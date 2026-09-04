@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfólio — Eduardo Bellini
 
-## Getting Started
+Portfólio profissional feito com Next.js, React, TypeScript e CSS responsivo. Os projetos selecionados são enriquecidos com dados da API pública do GitHub durante a renderização e possuem fallback local.
 
-First, run the development server:
+## Rodar localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Personalizar conteúdo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Dados pessoais, projetos, cursos e habilidades: `src/data/portfolio.ts`
+- Textos e estrutura das seções: `src/components/`
+- Cores, layout e responsividade: `src/app/globals.css`
+- Metadados de SEO e compartilhamento: `src/app/layout.tsx`
 
-## Learn More
+## Validar produção
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vercel
 
-## Deploy on Vercel
+1. Envie o repositório para o GitHub.
+2. Importe-o em [vercel.com/new](https://vercel.com/new).
+3. Mantenha o preset **Next.js** e publique. A URL de produção da Vercel será usada automaticamente nos metadados sociais.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Outras plataformas Node.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use `npm run build` como comando de build e `npm start` como comando de inicialização. O ambiente deve usar uma versão do Node.js compatível com o Next.js 16.
+
+Se usar outra plataforma, configure `NEXT_PUBLIC_SITE_URL` com o domínio definitivo (por exemplo, `https://seudominio.com.br`) para gerar URLs sociais absolutas.
